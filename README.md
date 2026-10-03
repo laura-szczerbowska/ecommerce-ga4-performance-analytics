@@ -1,6 +1,8 @@
 # Analiza Efektywności Produktowej i Konwersji GA4: Macierz Asortymentowa & Silnik Rekomendacji (Python | SQL | Power BI)
 
 
+<br>
+
 
 Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pythonie (Pandas)**, modelowanie w **SQL (PostgreSQL)** oraz wdrożenie interaktywnego, 2-stronicowego raportu decyzyjnego w **Power BI**. Projekt opiera się na rzeczywistych danych komercyjnych ze sklepu internetowego i rozwiązuje problem nieefektywnej alokacji budżetów reklamowych oraz diagnozy konwersji asortymentu w Google Analytics 4.
 
@@ -8,13 +10,13 @@ Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pyth
 > **Pochodzenie danych i anonimizacja:**  
 > Projekt został zrealizowany na bazie rzeczywistych danych produkcyjnych z działającego sklepu e-commerce. W celu ochrony tajemnicy handlowej zbiór został poddany pełnej **anonimizacji**: nazwy marek, produktów, kampanii oraz wartości metryk zostały przekształcone przy zachowaniu oryginalnych relacji, korelacji, dynamiki konwersji i zachowań użytkowników.
 
----
+
 
 <!-- MIEJSCE NA GIF / PREZENTACJĘ WIDEO (BARDZO POLECANE DLA JUNIORA) -->
 <!-- Nagraj krótki 10-15s GIF (np. narzędziem ScreenToGif) pokazujący najechanie na bąbelek (tooltip z lejkiem), kliknięcie segmentu i przejście do strony 2 -->
 <!-- ![Interaktywny Dashboard Demo](docs/dashboard_demo.gif) -->
 
----
+
 
 ## 1. Problem Biznesowy
 
