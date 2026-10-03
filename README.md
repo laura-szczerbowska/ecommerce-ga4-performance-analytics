@@ -178,16 +178,15 @@ ORDER BY global_revenue_rank ASC;
 ## 4. Raport Power BI & Warstwa Wizualna
 
 
-<br>
-
 
 ### Strona 1: Executive Overview & Macierz Efektywności Produktowej
 
 
-<br>
-
 
 <img width="1377" height="773" alt="image" src="https://github.com/user-attachments/assets/54581925-dc93-4893-b3ca-82ea202db40b" />
+
+
+<br>
 
 
 * **Karty KPI:** Kluczowe wskaźniki sklepu na jednym ekranie: łączny współczynnik konwersji (`CR = 4%`), średnia wartość koszyka (`AOV = 416,21 zł`), przychód (`Revenue = 129,86 tys. zł`) oraz zrealizowane transakcje (`Purchase = 312`).
@@ -211,10 +210,12 @@ ORDER BY global_revenue_rank ASC;
 ### Dedykowany Tooltip: Mikro-Lejek Zakupowy Produktu (*Report Page Tooltip*)
 
 
-<br>
 
 
 <img width="532" height="365" alt="image" src="https://github.com/user-attachments/assets/e702026c-1a52-4be8-aef1-280c1e640462" />
+
+
+<br>
 
 
 * Najechanie kursorem na dowolny bąbelek na wykresie wywołuje spersonalizowaną podpowiedź wizualną z **pełnym mikro-lejkiem zakupowym** dla wskazanego produktu:
@@ -230,10 +231,11 @@ $$\text{Views } (39{,}46\text{ tys.}) \longrightarrow \text{Cart adds } (0{,}32\
 ### Strona 2: Karta Produktu, Analiza Trendu i Silnik Rekomendacji
 
 
-<br>
-
 
 <img width="1375" height="772" alt="image" src="https://github.com/user-attachments/assets/b74dd08c-a63c-46e4-bf5a-2177281961d0" />
+
+
+<br>
 
 
 * **Interaktywna nawigacja:** Płynne przejście do widoku szczegółowego przyciskiem **„View product trend”** oraz globalne zerowanie kontekstu filtrowania przyciskiem **„Clear all slicers”**.
@@ -257,10 +259,9 @@ $$\text{Views } (39{,}46\text{ tys.}) \longrightarrow \text{Cart adds } (0{,}32\
 
 ## 6. Stack Technologiczny
 
-**Język & Biblioteki:** Python 3.x, Pandas
-**Baza Danych & SQL**: PostgreSQL (CTE, Window Functions, agregacje warunkowe)
-**Wizualizacja & BI**: Microsoft Power BI Desktop (DAX, Report-Page Tooltips, Drill-through, Page Interactions)
-**Źródło Danych**: Eksporty zdarzeń e-commerce z Google Analytics 4 (GA4)
+* **Baza Danych & SQL**: PostgreSQL (CTE, Window Functions, agregacje warunkowe)
+* **Wizualizacja & BI**: Microsoft Power BI Desktop (DAX, Report-Page Tooltips, Drill-through, Page Interactions)
+* **Źródło Danych**: Eksporty zdarzeń e-commerce z Google Analytics 4 (GA4)
 
 
 <br>
@@ -296,14 +297,14 @@ ecommerce-ga4-analytics/
 
 ## 8. Instrukcja Uruchomienia
 
-Sklonuj repozytorium:
+1) Sklonuj repozytorium:
 
 ```bash
 git clone https://github.com/twoj-login/ecommerce-ga4-analytics.git
 cd ecommerce-ga4-analytics
 ```
 
-Uruchom potok czyszczenia danych:
+2) Uruchom potok czyszczenia danych:
 
 ```bash
 python -m venv venv
@@ -312,15 +313,15 @@ pip install pandas
 python scripts/etl_pipeline.py
 ```
 
-Utwórz widok w bazie danych:
+3) Utwórz widok w bazie danych:
 
 * Zaimportuj wygenerowane pliki campaign.csv i category.csv jako tabele ga4_products i ga4_category.
 * Uruchom skrypt sql/create_products_analysis_view.sql.
 
-Uruchom dashboard:
+4) Uruchom dashboard:
 
-*Otwórz powerbi/ecommerce_performance.pbix w Power BI Desktop.
-*Odśwież dane wskazując swoją bazę SQL lub pliki wynikowe z folderu data/processed/
+* Otwórz powerbi/ecommerce_performance.pbix w Power BI Desktop.
+* Odśwież dane wskazując swoją bazę SQL lub pliki wynikowe z folderu data/processed/
 
 
 <br>
