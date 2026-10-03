@@ -4,7 +4,7 @@
 <br>
 
 
-Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pythonie (Pandas)**, modelowanie w **SQL (PostgreSQL)** oraz wdrożenie interaktywnego, 2-stronicowego raportu decyzyjnego w **Power BI**. Projekt opiera się na rzeczywistych danych komercyjnych ze sklepu internetowego i rozwiązuje problem nieefektywnej alokacji budżetów reklamowych oraz diagnozy konwersji asortymentu w Google Analytics 4.
+Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pythonie (Pandas)**, modelowanie w **SQL (PostgreSQL)** oraz wdrożenie interaktywnego, raportu decyzyjnego w **Power BI**. Projekt opiera się na rzeczywistych danych komercyjnych ze sklepu internetowego i rozwiązuje problem nieefektywnej alokacji budżetów reklamowych oraz diagnozy konwersji asortymentu w Google Analytics 4.
 
 
 > **Pochodzenie danych i anonimizacja:**  
@@ -75,7 +75,7 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 
 -----
 <details>
-<summary><b>Rozwiń kod źródłowy: Python ETL (etl_pipeline.py)</b></summary>
+<summary><b>Rozwiń kod źródłowy: Python ETL (ga4_data_pipeline.py)</b></summary>
 
 
 ```python
@@ -141,7 +141,7 @@ if __name__ == "__main__":
 <br>
 
 
-### 2) SQL -Modelowanie i Logika Biznesowa
+### 2) SQL - Modelowanie i Logika Biznesowa
 
 * **Deduplikacja relacji:** Pre-agregacja tabeli kategorii za pomocą `SELECT DISTINCT` w CTE zapobiega powielaniu wierszy i sztucznemu zawyżaniu przychodów w `LEFT JOIN`.
 * **Segmentacja źródeł ruchu:** Agregacja kampanii do przejrzystych grup biznesowych: `Paid Marketing` (Google Ads Search, PMax, Ceneo) vs `Free source` (Organic, Direct).
@@ -154,10 +154,12 @@ $$\text{Volume Efficiency Score} = \text{Total Purchased} \times \left( \frac{\t
   * **Flaga `cart_intent`:** Wskaźnik binarny informujący, czy produkt wywołał intencję zakupową (`total_cart_adds > 0`).
   * **Hierarchia sprzedaży:** Obliczenie pozycji produktu za pomocą `DENSE_RANK() OVER (...)` osobno w ramach kampanii, kategorii oraz całego katalogu sklepu.
 
+    
+-----
+
 <details>
 <summary><b>Rozwiń kod źródłowy: SQL (01_products_analysis.sql)</b></summary>
 
------
 
 ```sql
 CREATE OR REPLACE VIEW products_analysis AS
@@ -368,15 +370,11 @@ ecommerce-ga4-analytics/
 │       ├── campaign.csv                 # Oczyszczone dane kampanii
 │       └── category.csv                 # Oczyszczone dane kategorii
 ├── sql/
-│   └── create_products_analysis_view.sql# Zapytanie tworzące widok analityczny
+│   └── 01_products_analysis.sql         # Zapytanie tworzące widok analityczny
 ├── powerbi/
-│   └── ecommerce_performance.pbix       # Plik raportu Power BI
+│   └── ecommerce_performance_dashboard.pbix       # Plik raportu Power BI
 ├── scripts/
-│   └── etl_pipeline.py                  # Skrypt czyszczący i normalizujący w Pythonie
-├── docs/
-│   ├── executive_matrix.png             # Zrzut ekranu: Dashboard - Strona 1
-│   ├── tooltip_funnel.png               # Zrzut ekranu: Dedykowany tooltip z lejkiem
-│   └── strategic_actions.png            # Zrzut ekranu: Dashboard - Strona 2
+│   └── ga4_data_pipeline.py                  # Skrypt czyszczący i normalizujący w Pythonie
 └── README.md
 ```
 
