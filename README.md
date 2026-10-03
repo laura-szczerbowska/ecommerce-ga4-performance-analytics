@@ -66,34 +66,87 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 
 ## 3. Realizacja Techniczna
 
+### 1) Python - Inżynieria Danych, Profilowanie i Czyszczenie (`etl_pipeline.py`)
 
+* **Odporność na błędy parsowania:** Zastosowanie kodowania `utf-8-sig` (eliminacja problemów z BOM) oraz parametru `on_bad_lines="skip"`.
+* **Automatyczny audyt jakości:** Sprawdzenie braków danych (`isna().sum()`), duplikatów (`duplicated().sum()`) oraz badanie rozkładów cech (`describe()`, `info()`).
+* **Standaryzacja schematu:** Mapowanie polskich nazw wymiarów i metryk raportowych GA4 na znormalizowany standard techniczny (`product_name`, `campaign_name`, `category_name`, `items_viewed`, `items_added_to_cart`, `items_purchased`, `item_revenue`).
+* **Sanityzacja kluczy relacyjnych:** Usunięcie rekordów bez nazwy produktu (`dropna(subset=['Nazwa'])`) oraz pełnych duplikatów przed zasileniem bazy danych.
 
-* Python - Czyszczenie i Profilowanie Danych
+<details>
+<summary><b>Rozwiń kod źródłowy: Python ETL (etl_pipeline.py)</b></summary>
 
-   
-- Odporność na błędy parsowania: Zastosowanie kodowania utf-8-sig oraz parametru on_bad_lines="skip".
-- Automatyczny audyt jakości: Walidacja braków danych (isna().sum()), duplikatów (duplicated().sum()) oraz analiza rozkładów zmiennych (describe()).
-- Standaryzacja schematu: Przetłumaczenie i ujednolicenie polskich nazw metryk GA4 na format analityczny.
+```python
+import pandas as pd
 
+# Konfiguracja wyświetlania w terminalu
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 1000)
 
+file_campaign = "products_campaign.csv"
+file_category = "products_category.csv"
 
-* SQL - Modelowanie i Logika Biznesowa
+# 1. Mapowanie schematu GA4 -> standard analityczny
+camp_mapping = {
+    'Nazwa': 'product_name',
+    'Sesja – kampania': 'campaign_name',
+    'Wyświetlone produkty': 'items_viewed',
+    'Produkty dodane do koszyka': 'items_added_to_cart',
+    'Kupione produkty': 'items_purchased',
+    'Przychody z produktu': 'item_revenue'
+}
 
-   
-- Deduplikacja relacji: Pre-agregacja tabeli kategorii za pomocą SELECT DISTINCT w CTE zapobiega powielaniu wierszy i sztucznemu zawyżaniu przychodów w LEFT JOIN.
-- Segmentacja źródeł ruchu: Agregacja kampanii do przejrzystych grup biznesowych: Paid Marketing (Google Ads Search, PMax, Ceneo) vs Free source (Organic, Direct).
-- Filtr szumu statystycznego: Zastosowanie progu HAVING SUM(items_viewed) >= 10 eliminuje artefakty analityczne (np. 1 wyświetlenie i 1 zakup dające sztuczny CR = 100%).
-- Zaawansowane wskaźniki i funkcje okna:
-- Volume Efficiency Score: Premiuje produkty generujące realny wolumen transakcji przy wysokim CR:
+cat_mapping = {
+    "Nazwa": "product_name",
+    "Kategoria produktu": "category_name",
+    "Wyświetlone produkty": "items_viewed",
+    "Produkty dodane do koszyka": "items_added_to_cart",
+    "Kupione produkty": "items_purchased",
+    "Przychody z produktu": "item_revenue",
+}
 
+def load_and_audit(file_path: str, dataset_name: str) -> pd.DataFrame:
+    """Wczytuje surowy plik CSV, wykonuje audyt integralności danych i loguje statystyki."""
+    df = pd.read_csv(file_path, encoding="utf-8-sig", on_bad_lines="skip", sep=",")
+    print(f"\n--- AUDYT JAKOŚCI: {dataset_name} ---")
+    print(f"Wymiary (wiersze, kolumny): {df.shape}")
+    print(f"Brakujące wartości:\n{df.isna().sum()}")
+    print(f"Liczba pełnych duplikatów: {df.duplicated().sum()}\n")
+    return df
+
+def clean_and_export(df: pd.DataFrame, mapping: dict, output_path: str) -> pd.DataFrame:
+    """Czyści zbiór z braków kluczy biznesowych, zmienia nazwy kolumn i eksportuje plik."""
+    df_clean = df.dropna(subset=['Nazwa']).drop_duplicates().copy()
+    df_clean = df_clean.rename(columns=mapping)
+    df_clean.to_csv(output_path, index=False, encoding="utf-8-sig")
+    print(f"[✓] Zapisano plik: {output_path} ({len(df_clean)} wierszy)")
+    return df_clean
+
+if __name__ == "__main__":
+    df_camp_raw = load_and_audit(file_campaign, "products_campaign")
+    df_cat_raw = load_and_audit(file_category, "products_category")
+
+    df_camp = clean_and_export(df_camp_raw, camp_mapping, "campaign.csv")
+    df_cat = clean_and_export(df_cat_raw, cat_mapping, "category.csv")
+
+```
+
+### 2) SQL -Modelowanie i Logika Biznesowa
+
+* **Deduplikacja relacji:** Pre-agregacja tabeli kategorii za pomocą `SELECT DISTINCT` w CTE zapobiega powielaniu wierszy i sztucznemu zawyżaniu przychodów w `LEFT JOIN`.
+* **Segmentacja źródeł ruchu:** Agregacja kampanii do przejrzystych grup biznesowych: `Paid Marketing` (Google Ads Search, PMax, Ceneo) vs `Free source` (Organic, Direct).
+* **Filtr szumu statystycznego:** Zastosowanie progu `HAVING SUM(items_viewed) >= 10` eliminuje artefakty analityczne (np. 1 wyświetlenie i 1 zakup dające sztuczny CR = 100%).
+* **Zaawansowane wskaźniki i funkcje okna:**
+  * **Volume Efficiency Score:** Premiuje produkty generujące realny wolumen transakcji przy wysokim CR:
 
 $$\text{Volume Efficiency Score} = \text{Total Purchased} \times \left( \frac{\text{Total Purchased}}{\text{Total Viewed}} \right)$$
 
+  * **Flaga `cart_intent`:** Wskaźnik binarny informujący, czy produkt wywołał intencję zakupową (`total_cart_adds > 0`).
+  * **Hierarchia sprzedaży:** Obliczenie pozycji produktu za pomocą `DENSE_RANK() OVER (...)` osobno w ramach kampanii, kategorii oraz całego katalogu sklepu.
 
-- Flaga cart_intent: Wskaźnik binarny informujący, czy produkt wywołał intencję zakupową (total_cart_adds > 0).
-- Hierarchia sprzedaży: Obliczenie pozycji produktu za pomocą DENSE_RANK() OVER (...) osobno w ramach kampanii, kategorii oraz całego katalogu sklepu.
-
-
+<details>
+<summary><b>Rozwiń kod źródłowy: SQL (01_products_analysis.sql)</b></summary>
+	
 ```sql
 CREATE OR REPLACE VIEW products_analysis AS
 
@@ -180,7 +233,6 @@ ORDER BY global_revenue_rank ASC;
 
 
 ## 4. Raport Power BI & Warstwa Wizualna
-
 
 
 ### Strona 1: Executive Overview & Macierz Efektywności Produktowej
