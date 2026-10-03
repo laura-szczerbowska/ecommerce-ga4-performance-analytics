@@ -68,7 +68,7 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 
 
 
-1) Python - Czyszczenie i Profilowanie Danych
+* 1) Python - Czyszczenie i Profilowanie Danych
 
    
 - Odporność na błędy parsowania: Zastosowanie kodowania utf-8-sig oraz parametru on_bad_lines="skip".
@@ -77,7 +77,7 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 
 
 
-2) SQL - Modelowanie i Logika Biznesowa
+* 2) SQL - Modelowanie i Logika Biznesowa
 
    
 - Deduplikacja relacji: Pre-agregacja tabeli kategorii za pomocą SELECT DISTINCT w CTE zapobiega powielaniu wierszy i sztucznemu zawyżaniu przychodów w LEFT JOIN.
@@ -87,7 +87,7 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 - Volume Efficiency Score: Premiuje produkty generujące realny wolumen transakcji przy wysokim CR:
 
 
-$$\text{Volume Efficiency Score} = \text{total\_purchased} \times \left( \frac{\text{total\_purchased}}{\text{total\_viewed}} \right)$$
+$$\text{Volume Efficiency Score} = \text{Total Purchased} \times \left( \frac{\text{Total Purchased}}{\text{Total Viewed}} \right)$$
 
 
 - Flaga cart_intent: Wskaźnik binarny informujący, czy produkt wywołał intencję zakupową (total_cart_adds > 0).
@@ -189,7 +189,9 @@ ORDER BY global_revenue_rank ASC;
 <br>
 
 
+
 <img width="1377" height="773" alt="image" src="https://github.com/user-attachments/assets/54581925-dc93-4893-b3ca-82ea202db40b" />
+
 
 
 <br>
@@ -223,7 +225,9 @@ ORDER BY global_revenue_rank ASC;
 <img width="532" height="365" alt="image" src="https://github.com/user-attachments/assets/e702026c-1a52-4be8-aef1-280c1e640462" />
 
 
+
 <br>
+
 
 
 * Najechanie kursorem na dowolny bąbelek na wykresie wywołuje spersonalizowaną podpowiedź wizualną z **pełnym mikro-lejkiem zakupowym** dla wskazanego produktu:
@@ -245,7 +249,9 @@ $$\text{Views } (39{,}46\text{ tys.}) \longrightarrow \text{Cart adds } (0{,}32\
 <img width="1375" height="772" alt="image" src="https://github.com/user-attachments/assets/b74dd08c-a63c-46e4-bf5a-2177281961d0" />
 
 
+
 <br>
+
 
 
 * **Interaktywna nawigacja:** Płynne przejście do widoku szczegółowego przyciskiem **„View product trend”** oraz globalne zerowanie kontekstu filtrowania przyciskiem **„Clear all slicers”**.
