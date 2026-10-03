@@ -135,6 +135,9 @@ if __name__ == "__main__":
 </details>
 
 
+<br>
+
+
 ### 2) SQL -Modelowanie i Logika Biznesowa
 
 * **Deduplikacja relacji:** Pre-agregacja tabeli kategorii za pomocą `SELECT DISTINCT` w CTE zapobiega powielaniu wierszy i sztucznemu zawyżaniu przychodów w `LEFT JOIN`.
@@ -289,13 +292,13 @@ ORDER BY global_revenue_rank ASC;
 <p>&nbsp;</p>
 
 
-* Najechanie kursorem na dowolny bąbelek na wykresie wywołuje spersonalizowaną podpowiedź wizualną z **pełnym mikro-lejkiem zakupowym** dla wskazanego produktu:
+Najechanie kursorem na dowolny bąbelek na wykresie wywołuje spersonalizowaną podpowiedź wizualną z **pełnym mikro-lejkiem zakupowym** dla wskazanego produktu:
 
 
 $$\text{Views } (222) \longrightarrow \text{Cart adds } (176) \longrightarrow \text{Purchase } (71)$$
 
 
-* Tooltip natychmiast prezentuje jednostkowy przychód, CR oraz AOV dla wybranego SKU, umożliwiając błyskawiczną identyfikację, czy konwersja spada na etapie koszyka, czy samej oferty.
+Tooltip natychmiast prezentuje jednostkowy przychód, CR oraz AOV dla wybranego SKU, umożliwiając błyskawiczną identyfikację, czy konwersja spada na etapie koszyka, czy samej oferty.
 
 
 <br>
