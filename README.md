@@ -1,4 +1,6 @@
-# E-Commerce GA4 Performance Engine: Product Matrix & Funnel Analytics
+# Analiza Efektywności Produktowej i Konwersji GA4: Macierz Asortymentowa & Silnik Rekomendacji (Python | SQL | Power BI)
+
+
 
 Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pythonie (Pandas)**, modelowanie w **SQL (PostgreSQL)** oraz wdrożenie interaktywnego, 2-stronicowego raportu decyzyjnego w **Power BI**. Projekt opiera się na rzeczywistych danych komercyjnych ze sklepu internetowego i rozwiązuje problem nieefektywnej alokacji budżetów reklamowych oraz diagnozy konwersji asortymentu w Google Analytics 4.
 
@@ -59,13 +61,19 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 
 ## 3. Realizacja Techniczna
 
+
+
 1) Python - Czyszczenie i Profilowanie Danych
+
    
 - Odporność na błędy parsowania: Zastosowanie kodowania utf-8-sig oraz parametru on_bad_lines="skip".
 - Automatyczny audyt jakości: Walidacja braków danych (isna().sum()), duplikatów (duplicated().sum()) oraz analiza rozkładów zmiennych (describe()).
 - Standaryzacja schematu: Przetłumaczenie i ujednolicenie polskich nazw metryk GA4 na format analityczny.
 
+
+
 2) SQL - Modelowanie i Logika Biznesowa
+
    
 - Deduplikacja relacji: Pre-agregacja tabeli kategorii za pomocą SELECT DISTINCT w CTE zapobiega powielaniu wierszy i sztucznemu zawyżaniu przychodów w LEFT JOIN.
 - Segmentacja źródeł ruchu: Agregacja kampanii do przejrzystych grup biznesowych: Paid Marketing (Google Ads Search, PMax, Ceneo) vs Free source (Organic, Direct).
@@ -73,10 +81,13 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 - Zaawansowane wskaźniki i funkcje okna:
 - Volume Efficiency Score: Premiuje produkty generujące realny wolumen transakcji przy wysokim CR:
 
+
 $$\text{Volume Efficiency Score} = \text{total\_purchased} \times \left( \frac{\text{total\_purchased}}{\text{total\_viewed}} \right)$$
+
 
 - Flaga cart_intent: Wskaźnik binarny informujący, czy produkt wywołał intencję zakupową (total_cart_adds > 0).
 - Hierarchia sprzedaży: Obliczenie pozycji produktu za pomocą DENSE_RANK() OVER (...) osobno w ramach kampanii, kategorii oraz całego katalogu sklepu.
+
 
 ```sql
 CREATE OR REPLACE VIEW products_analysis AS
@@ -165,14 +176,24 @@ ORDER BY global_revenue_rank ASC;
 
 ## 4. Raport Power BI & Warstwa Wizualna
 
+
+<br>
+
+
 ### Strona 1: Executive Overview & Macierz Efektywności Produktowej
+
+
+<br>
 
 
 <img width="1377" height="773" alt="image" src="https://github.com/user-attachments/assets/54581925-dc93-4893-b3ca-82ea202db40b" />
 
 
 * **Karty KPI:** Kluczowe wskaźniki sklepu na jednym ekranie: łączny współczynnik konwersji (`CR = 4%`), średnia wartość koszyka (`AOV = 416,21 zł`), przychód (`Revenue = 129,86 tys. zł`) oraz zrealizowane transakcje (`Purchase = 312`).
+  
 * **Macierz Efektywności Produktowej (*Product Performance Matrix — Traffic vs. CR*):**
+
+  
   * **Oś X:** `views` (Ruch / Wolumen odsłon)
   * **Oś Y:** `CR` (Współczynnik konwersji)
   * **Wielkość bąbelka:** `total_revenue` (Wartość przychodu)
@@ -181,6 +202,7 @@ ORDER BY global_revenue_rank ASC;
     * **High Potential (Niski ruch, wysoki CR):** Produkty o ponadprzeciętnej konwersji, którym brakuje skali; główni kandydaci do natychmiastowego doskalowania budżetem w Ads (np. dedykowane kampanie PMax).
     * **Requires Optimization (Wysoki ruch, niski CR):** Produkty przepalające budżet; wymagają audytu strony produktowej (CRO), weryfikacji cen na tle konkurencji lub zawężenia słów kluczowych.
     * **Underperforming (Niski ruch, niski CR):** Asortyment nieefektywny; rekomendacja wygaszenia promocji, wyprzedaży lub sprzedaży wiązanej (bundling).
+      
 * **Zestawienia rynkowe:** Słupkowe analizy przychodu w podziale na kanały marketingowe (dominacja ruchu Referral i Search) oraz kluczowe kategorie (Narzędzia Ogrodowe, Elektronarzędzia).
 
 ---
@@ -188,18 +210,26 @@ ORDER BY global_revenue_rank ASC;
 ### Dedykowany Tooltip: Mikro-Lejek Zakupowy Produktu (*Report Page Tooltip*)
 
 
-<img width="1235" height="917" alt="image" src="https://github.com/user-attachments/assets/f2715968-f6f2-4813-90d8-8c6c081fe011" />
+<br>
+
+
+<img width="532" height="365" alt="image" src="https://github.com/user-attachments/assets/e702026c-1a52-4be8-aef1-280c1e640462" />
 
 
 * Najechanie kursorem na dowolny bąbelek na wykresie wywołuje spersonalizowaną podpowiedź wizualną z **pełnym mikro-lejkiem zakupowym** dla wskazanego produktu:
 
-$$\text{Views } (8{,}64\text{ tys.}) \longrightarrow \text{Cart adds } (1{,}78\text{ tys.}) \longrightarrow \text{Purchase } (0{,}31\text{ tys.})$$
+
+$$\text{Views } (39{,}46\text{ tys.}) \longrightarrow \text{Cart adds } (0{,}32\text{ tys.}) \longrightarrow \text{Purchase } (0{,}31\text{ tys.})$$
+
 
 * Tooltip natychmiast prezentuje jednostkowy przychód, CR oraz AOV dla wybranego SKU, umożliwiając błyskawiczną identyfikację, czy konwersja spada na etapie koszyka, czy samej oferty.
 
 ---
 
 ### Strona 2: Karta Produktu, Analiza Trendu i Silnik Rekomendacji
+
+
+<br>
 
 
 <img width="1375" height="772" alt="image" src="https://github.com/user-attachments/assets/b74dd08c-a63c-46e4-bf5a-2177281961d0" />
