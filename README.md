@@ -186,6 +186,8 @@ ORDER BY global_revenue_rank ASC;
 ### Strona 1: Executive Overview & Macierz Efektywności Produktowej
 
 
+<br>
+
 
 <img width="1377" height="773" alt="image" src="https://github.com/user-attachments/assets/54581925-dc93-4893-b3ca-82ea202db40b" />
 
@@ -214,6 +216,8 @@ ORDER BY global_revenue_rank ASC;
 ### Dedykowany Tooltip: Mikro-Lejek Zakupowy Produktu (*Report Page Tooltip*)
 
 
+<br>
+
 
 
 <img width="532" height="365" alt="image" src="https://github.com/user-attachments/assets/e702026c-1a52-4be8-aef1-280c1e640462" />
@@ -234,6 +238,8 @@ $$\text{Views } (39{,}46\text{ tys.}) \longrightarrow \text{Cart adds } (0{,}32\
 
 ### Strona 2: Karta Produktu, Analiza Trendu i Silnik Rekomendacji
 
+
+<br>
 
 
 <img width="1375" height="772" alt="image" src="https://github.com/user-attachments/assets/b74dd08c-a63c-46e4-bf5a-2177281961d0" />
