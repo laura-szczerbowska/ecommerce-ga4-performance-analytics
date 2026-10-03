@@ -17,6 +17,8 @@ Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pyth
 <!-- ![Interaktywny Dashboard Demo](docs/dashboard_demo.gif) -->
 
 
+<br>
+
 
 ## 1. Problem Biznesowy
 
