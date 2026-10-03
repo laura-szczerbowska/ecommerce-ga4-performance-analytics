@@ -77,6 +77,7 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 <summary><b>Rozwiń kod źródłowy: Python ETL (etl_pipeline.py)</b></summary>
 
 ```python
+
 import pandas as pd
 
 # Konfiguracja wyświetlania w terminalu
@@ -130,6 +131,8 @@ if __name__ == "__main__":
     df_cat = clean_and_export(df_cat_raw, cat_mapping, "category.csv")
 
 ```
+<\details>
+
 
 ### 2) SQL -Modelowanie i Logika Biznesowa
 
@@ -228,6 +231,8 @@ ORDER BY global_revenue_rank ASC;
 
 ```
 
+<\details>
+
 
 <br>
 
@@ -245,8 +250,7 @@ ORDER BY global_revenue_rank ASC;
 <img width="1377" height="773" alt="image" src="https://github.com/user-attachments/assets/54581925-dc93-4893-b3ca-82ea202db40b" />
 
 
-
-<br>
+<p>&nbsp;</p>
 
 
 * **Karty KPI:** Kluczowe wskaźniki sklepu na jednym ekranie: łączny współczynnik konwersji (`CR = 4%`), średnia wartość koszyka (`AOV = 416,21 zł`), przychód (`Revenue = 129,86 tys. zł`) oraz zrealizowane transakcje (`Purchase = 312`).
@@ -279,19 +283,13 @@ ORDER BY global_revenue_rank ASC;
 <img width="532" height="365" alt="image" src="https://github.com/user-attachments/assets/e702026c-1a52-4be8-aef1-280c1e640462" />
 
 
-
-
-
-<br>
-
-
-
+<p>&nbsp;</p>
 
 
 * Najechanie kursorem na dowolny bąbelek na wykresie wywołuje spersonalizowaną podpowiedź wizualną z **pełnym mikro-lejkiem zakupowym** dla wskazanego produktu:
 
 
-$$\text{Views } (39{,}46\text{ tys.}) \longrightarrow \text{Cart adds } (0{,}32\text{ tys.}) \longrightarrow \text{Purchase } (0{,}31\text{ tys.})$$
+$$\text{Views } (222) \longrightarrow \text{Cart adds } (176) \longrightarrow \text{Purchase } (71)$$
 
 
 * Tooltip natychmiast prezentuje jednostkowy przychód, CR oraz AOV dla wybranego SKU, umożliwiając błyskawiczną identyfikację, czy konwersja spada na etapie koszyka, czy samej oferty.
@@ -300,25 +298,17 @@ $$\text{Views } (39{,}46\text{ tys.}) \longrightarrow \text{Cart adds } (0{,}32\
 
 ### Strona 2: Karta Produktu, Analiza Trendu i Silnik Rekomendacji
 
-
-<br>
-
-
-<img width="1375" height="772" alt="image" src="https://github.com/user-attachments/assets/b74dd08c-a63c-46e4-bf5a-2177281961d0" />
+<p align="center">
+  <img width="1375" height="772" alt="image" src="https://github.com/user-attachments/assets/b74dd08c-a63c-46e4-bf5a-2177281961d0" />
+</p>
 
 
+<p>&nbsp;</p>
 
 
-
-<br>
-
-
-
-
-
-* **Interaktywna nawigacja:** Płynne przejście do widoku szczegółowego przyciskiem **„View product trend”** oraz globalne zerowanie kontekstu filtrowania przyciskiem **„Clear all slicers”**.
-* **Trend przychodów w czasie:** Wykres liniowy sprzedaży ujawniający dynamikę popytu, sezonowość oraz reakcję na piki promocyjne.
-* **Tabela Rekomendacji Strategicznych (*Strategic Recommendations*):** Silnik regułowy łączący metryki produktu i kampanii z precyzyjnymi akcjami operacyjnymi:
+**Interaktywna nawigacja:** Płynne przejście do widoku szczegółowego przyciskiem **„View product trend”** oraz globalne zerowanie kontekstu filtrowania przyciskiem **„Clear all slicers”**.
+**Trend przychodów w czasie:** Wykres liniowy sprzedaży ujawniający dynamikę popytu, sezonowość oraz reakcję na piki promocyjne.
+**Tabela Rekomendacji Strategicznych (*Strategic Recommendations*):** Silnik regułowy łączący metryki produktu i kampanii z precyzyjnymi akcjami operacyjnymi:
   * **Dla ruchu referral o wysokim CR (43%):** *Maintain ad spend and feature as anchors to boost underperforming campaigns*.
   * **Dla kampanii Search o niskim CR (2%):** *Drive conversion through promotional offers, streamlined checkout, fast delivery, cross-selling, and targeted SEO/keywords*.
   * **Dla źródeł niszowych (wysoki CR, mały wolumen):** *Increase marketing and advertising budget, improve SEO, and explore brand partnerships*.
