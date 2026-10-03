@@ -73,6 +73,7 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 * **Standaryzacja schematu:** Mapowanie polskich nazw wymiarów i metryk raportowych GA4 na znormalizowany standard techniczny (`product_name`, `campaign_name`, `category_name`, `items_viewed`, `items_added_to_cart`, `items_purchased`, `item_revenue`).
 * **Sanityzacja kluczy relacyjnych:** Usunięcie rekordów bez nazwy produktu (`dropna(subset=['Nazwa'])`) oraz pełnych duplikatów przed zasileniem bazy danych.
 
+-----
 <details>
 <summary><b>Rozwiń kod źródłowy: Python ETL (etl_pipeline.py)</b></summary>
 
@@ -81,14 +82,14 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 
 import pandas as pd
 
-# Konfiguracja wyświetlania w terminalu
+# Terminal display configuration
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1000)
 
 file_campaign = "products_campaign.csv"
 file_category = "products_category.csv"
 
-# 1. Mapowanie schematu GA4 -> standard analityczny
+# Schema mapping GA4 raw export
 camp_mapping = {
     'Nazwa': 'product_name',
     'Sesja – kampania': 'campaign_name',
@@ -107,21 +108,21 @@ cat_mapping = {
     "Przychody z produktu": "item_revenue",
 }
 
-def load_and_audit(file_path: str, dataset_name: str) -> pd.DataFrame:
-    """Wczytuje surowy plik CSV, wykonuje audyt integralności danych i loguje statystyki."""
+#Loads raw CSV file, performs data integrity checks and logs quality metrics.
+def load_and_audit(file_path):
     df = pd.read_csv(file_path, encoding="utf-8-sig", on_bad_lines="skip", sep=",")
-    print(f"\n--- AUDYT JAKOŚCI: {dataset_name} ---")
-    print(f"Wymiary (wiersze, kolumny): {df.shape}")
-    print(f"Brakujące wartości:\n{df.isna().sum()}")
-    print(f"Liczba pełnych duplikatów: {df.duplicated().sum()}\n")
+    print(f"{df.head(3)}")
+    print(f"Dimensions: {df.shape}")
+    print(f"Data types: {df.dtypes}")
+    print(f"Missing values:{df.isna().sum()}")
+    print(f"Duplicate rows count: {df.duplicated().sum()}")
     return df
 
-def clean_and_export(df: pd.DataFrame, mapping: dict, output_path: str) -> pd.DataFrame:
-    """Czyści zbiór z braków kluczy biznesowych, zmienia nazwy kolumn i eksportuje plik."""
-    df_clean = df.dropna(subset=['Nazwa']).drop_duplicates().copy()
-    df_clean = df_clean.rename(columns=mapping)
+#Sanitizes records, maps column names, and exports ready-to-load CSV for SQL.
+def clean_and_export(df, mapping, output_path):
+    df_clean = df.rename(columns=mapping)
     df_clean.to_csv(output_path, index=False, encoding="utf-8-sig")
-    print(f"[✓] Zapisano plik: {output_path} ({len(df_clean)} wierszy)")
+    print(f"Successfully exported:{output_path}")
     return df_clean
 
 if __name__ == "__main__":
@@ -130,6 +131,8 @@ if __name__ == "__main__":
 
     df_camp = clean_and_export(df_camp_raw, camp_mapping, "campaign.csv")
     df_cat = clean_and_export(df_cat_raw, cat_mapping, "category.csv")
+
+
 
 ```
 </details>
@@ -153,7 +156,9 @@ $$\text{Volume Efficiency Score} = \text{Total Purchased} \times \left( \frac{\t
 
 <details>
 <summary><b>Rozwiń kod źródłowy: SQL (01_products_analysis.sql)</b></summary>
-	
+
+-----
+
 ```sql
 CREATE OR REPLACE VIEW products_analysis AS
 
