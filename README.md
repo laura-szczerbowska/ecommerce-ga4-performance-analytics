@@ -68,7 +68,7 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 
 
 
-* 1) Python - Czyszczenie i Profilowanie Danych
+* Python - Czyszczenie i Profilowanie Danych
 
    
 - Odporność na błędy parsowania: Zastosowanie kodowania utf-8-sig oraz parametru on_bad_lines="skip".
@@ -77,7 +77,7 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 
 
 
-* 2) SQL - Modelowanie i Logika Biznesowa
+* SQL - Modelowanie i Logika Biznesowa
 
    
 - Deduplikacja relacji: Pre-agregacja tabeli kategorii za pomocą SELECT DISTINCT w CTE zapobiega powielaniu wierszy i sztucznemu zawyżaniu przychodów w LEFT JOIN.
@@ -213,7 +213,9 @@ ORDER BY global_revenue_rank ASC;
       
 * **Zestawienia rynkowe:** Słupkowe analizy przychodu w podziale na kanały marketingowe (dominacja ruchu Referral i Search) oraz kluczowe kategorie (Narzędzia Ogrodowe, Elektronarzędzia).
 
----
+
+<br>
+
 
 ### Dedykowany Tooltip: Mikro-Lejek Zakupowy Produktu (*Report Page Tooltip*)
 
@@ -226,7 +228,11 @@ ORDER BY global_revenue_rank ASC;
 
 
 
+
+
 <br>
+
+
 
 
 
@@ -250,7 +256,11 @@ $$\text{Views } (39{,}46\text{ tys.}) \longrightarrow \text{Cart adds } (0{,}32\
 
 
 
+
+
 <br>
+
+
 
 
 
@@ -261,7 +271,10 @@ $$\text{Views } (39{,}46\text{ tys.}) \longrightarrow \text{Cart adds } (0{,}32\
   * **Dla kampanii Search o niskim CR (2%):** *Drive conversion through promotional offers, streamlined checkout, fast delivery, cross-selling, and targeted SEO/keywords*.
   * **Dla źródeł niszowych (wysoki CR, mały wolumen):** *Increase marketing and advertising budget, improve SEO, and explore brand partnerships*.
 
----
+
+<br>
+
+
 
 ## 5. Kluczowe Wnioski Biznesowe
 
