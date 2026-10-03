@@ -76,6 +76,7 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 <details>
 <summary><b>Rozwiń kod źródłowy: Python ETL (etl_pipeline.py)</b></summary>
 
+
 ```python
 
 import pandas as pd
@@ -131,7 +132,7 @@ if __name__ == "__main__":
     df_cat = clean_and_export(df_cat_raw, cat_mapping, "category.csv")
 
 ```
-<\details>
+</details>
 
 
 ### 2) SQL -Modelowanie i Logika Biznesowa
@@ -231,7 +232,7 @@ ORDER BY global_revenue_rank ASC;
 
 ```
 
-<\details>
+</details>
 
 
 <br>
@@ -239,8 +240,10 @@ ORDER BY global_revenue_rank ASC;
 
 ## 4. Raport Power BI & Warstwa Wizualna
 
+<br>
 
-### Strona 1: Executive Overview & Macierz Efektywności Produktowej
+
+### 1) Strona 1: Executive Overview & Macierz Efektywności Produktowej
 
 
 <br>
@@ -273,7 +276,7 @@ ORDER BY global_revenue_rank ASC;
 <br>
 
 
-### Dedykowany Tooltip: Mikro-Lejek Zakupowy Produktu (*Report Page Tooltip*)
+### 2) Dedykowany Tooltip: Mikro-Lejek Zakupowy Produktu (*Report Page Tooltip*)
 
 
 <br>
@@ -294,9 +297,16 @@ $$\text{Views } (222) \longrightarrow \text{Cart adds } (176) \longrightarrow \t
 
 * Tooltip natychmiast prezentuje jednostkowy przychód, CR oraz AOV dla wybranego SKU, umożliwiając błyskawiczną identyfikację, czy konwersja spada na etapie koszyka, czy samej oferty.
 
----
 
-### Strona 2: Karta Produktu, Analiza Trendu i Silnik Rekomendacji
+<br>
+
+
+
+### 3)Strona 2: Karta Produktu, Analiza Trendu i Silnik Rekomendacji
+
+
+<br>
+
 
 <p align="center">
   <img width="1375" height="772" alt="image" src="https://github.com/user-attachments/assets/b74dd08c-a63c-46e4-bf5a-2177281961d0" />
