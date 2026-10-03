@@ -4,6 +4,7 @@
 
 Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pythonie (Pandas)**, modelowanie w **SQL (PostgreSQL)** oraz wdrożenie interaktywnego, 2-stronicowego raportu decyzyjnego w **Power BI**. Projekt opiera się na rzeczywistych danych komercyjnych ze sklepu internetowego i rozwiązuje problem nieefektywnej alokacji budżetów reklamowych oraz diagnozy konwersji asortymentu w Google Analytics 4.
 
+
 > **Pochodzenie danych i anonimizacja:**  
 > Projekt został zrealizowany na bazie rzeczywistych danych produkcyjnych z działającego sklepu e-commerce. W celu ochrony tajemnicy handlowej zbiór został poddany pełnej **anonimizacji**: nazwy marek, produktów, kampanii oraz wartości metryk zostały przekształcone przy zachowaniu oryginalnych relacji, korelacji, dynamiki konwersji i zachowań użytkowników.
 
