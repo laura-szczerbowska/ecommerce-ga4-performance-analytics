@@ -1,3 +1,8 @@
+<div align="right">
+  <strong>English</strong> | <a href="./README.pl.md">Polski</a>
+</div>
+
+
 # GA4 Product Performance & Conversion Analysis: Assortment Matrix & Recommendation Engine (Python | SQL | Power BI)
 
 <br>
@@ -139,6 +144,11 @@ if __name__ == "__main__":
 ```
 
 
+</details>
+
+
+
+
 <br>
 
 
@@ -241,7 +251,12 @@ SELECT
 
 FROM aggregated_products
 ORDER BY global_revenue_rank ASC;
+
 ```
+
+
+</details>
+
 
 
 <br>
