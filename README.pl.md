@@ -164,7 +164,7 @@ $$\text{Volume Efficiency Score} = \text{Total Purchased} \times \left( \frac{\t
 -----
 
 <details>
-<summary><b>Rozwiń kod źródłowy: SQL (01_products_analysis.sql)</b></summary>
+<summary><b>Rozwiń kod źródłowy: SQL (products_analysis.sql)</b></summary>
 
 
 ```sql
@@ -369,21 +369,18 @@ Tooltip natychmiast prezentuje jednostkowy przychód, CR oraz AOV dla wybranego 
 ## 7. Struktura Repozytorium
 
 ```text
-ecommerce-ga4-analytics/
+ecommerce-ga4-performance-analytics/
 ├── data/
-│   ├── raw/
-│   │   ├── products_campaign.csv        # Surowy eksport GA4 (wymiar: kampania)
-│   │   └── products_category.csv        # Surowy eksport GA4 (wymiar: kategoria)
+│   ├── products_campaign.csv        # Raw GA4 export (campaign dimension)
+│   ├── products_category.csv        # Raw GA4 export (category dimension)
 │   └── processed/
-│       ├── campaign.csv                 # Oczyszczone dane kampanii
-│       └── category.csv                 # Oczyszczone dane kategorii
-├── sql/
-│   └── 01_products_analysis.sql         # Zapytanie tworzące widok analityczny
-├── powerbi/
-│   └── ecommerce_performance_dashboard.pbix       # Plik raportu Power BI
-├── scripts/
-│   └── ga4_data_pipeline.py                  # Skrypt czyszczący i normalizujący w Pythonie
-└── README.md
+│       ├── campaign.csv             # Cleaned campaign dataset
+│       └── category.csv             # Cleaned category dataset
+├── ecommerce_performance_dashboard.pbix   # Power BI production report
+├── ga4_data_pipeline.py             # Python data cleansing & ETL script
+├── products_analysis.sql            # View creation and business logic script
+├── README.md
+└── README.pl.md
 ```
 
 
@@ -395,7 +392,7 @@ ecommerce-ga4-analytics/
 1) Sklonuj repozytorium:
 
 ```bash
-git clone https://github.com/twoj-login/ecommerce-ga4-analytics.git
+git clone https://github.com/laura-szczerbowska/ecommerce-ga4-performance-analytics.git
 cd ecommerce-ga4-analytics
 ```
 
@@ -415,7 +412,7 @@ python scripts/etl_pipeline.py
 
 4) Uruchom dashboard:
 
-* Otwórz powerbi/ecommerce_performance.pbix w Power BI Desktop.
+* Otwórz ecommerce_performance.pbix w Power BI Desktop.
 * Odśwież dane wskazując swoją bazę SQL lub pliki wynikowe z folderu data/processed/
 
 
