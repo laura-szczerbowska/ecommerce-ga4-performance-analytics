@@ -399,8 +399,8 @@ ecommerce-ga4-performance-analytics/
 1) Clone the repository:
 
 ```bash
-git clone [https://github.com/your-username/ecommerce-ga4-analytics.git](https://github.com/your-username/ecommerce-ga4-analytics.git)
-cd ecommerce-ga4-analytics
+git clone https://github.com/laura-szczerbowska/ecommerce-ga4-performance-analytics.git
+cd ecommerce-ga4-performance-analytics
 ```
 
 
@@ -409,7 +409,7 @@ cd ecommerce-ga4-analytics
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install pandas
-python scripts/ga4_data_pipeline.py
+python ga4_data_pipeline.py
 ```
 
 
