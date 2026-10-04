@@ -10,7 +10,7 @@
 An end-to-end e-commerce analytical module integrating data processing in **Python (Pandas)**, data modeling in **SQL (PostgreSQL)**, and an interactive executive decision dashboard deployed in **Power BI**. Built on real-world commercial e-commerce data, this project directly addresses inefficient advertising budget allocation and assortment conversion bottlenecks within Google Analytics 4.
 
 > **Data Provenance & Anonymization:**  
-> This project was developed using production data from an active e-commerce store. To protect commercial confidentiality, the dataset has undergone full **anonymization**: brand names, product titles, campaign identifiers, and baseline metrics were transformed while preserving original relational integrity, correlations, conversion dynamics, and behavioral patterns.
+> This project was developed using production data from an active e-commerce store. To protect commercial confidentiality, the dataset has undergone full **anonymization**: brand names, product titles, campaign identifiers, and baseline metrics were transformed while preserving original relational integrity, correlations, conversion dynamics and behavioral patterns.
 
 
 <br>
