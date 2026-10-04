@@ -16,13 +16,11 @@ Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pyth
 > Projekt został zrealizowany na bazie rzeczywistych danych produkcyjnych z działającego sklepu e-commerce. W celu ochrony tajemnicy handlowej zbiór został poddany pełnej **anonimizacji**: nazwy marek, produktów, kampanii oraz wartości metryk zostały przekształcone przy zachowaniu oryginalnych relacji, korelacji, dynamiki konwersji i zachowań użytkowników.
 
 
+<br>
 
 
 
 https://github.com/user-attachments/assets/d1b28b96-40c9-4ca3-b0b6-0f0361006c05
-
-
-
 
 
 
