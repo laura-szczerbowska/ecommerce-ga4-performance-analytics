@@ -388,6 +388,8 @@ ecommerce-ga4-analytics/
 git clone [https://github.com/your-username/ecommerce-ga4-analytics.git](https://github.com/your-username/ecommerce-ga4-analytics.git)
 cd ecommerce-ga4-analytics
 ```
+
+
 2) Run the data cleaning pipeline:
 ```
 python -m venv venv
@@ -395,12 +397,15 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install pandas
 python scripts/ga4_data_pipeline.py
 ```
-3)Initialize database views:
 
-Import campaign.csv and category.csv into your database as tables ga4_products and ga4_category.
-Execute the script sql/01_products_analysis.sql.
-Open the dashboard: Open powerbi/ecommerce_performance_dashboard.pbix in Power BI Desktop.
-Refresh data connections pointing to your PostgreSQL instance or processed local files.
+
+3)Initialize database views:
+* Import campaign.csv and category.csv into your database as tables ga4_products and ga4_category.
+* Execute the script sql/01_products_analysis.sql.
+
+4)Open the dashboard:
+* Open powerbi/ecommerce_performance_dashboard.pbix in Power BI Desktop.
+* Refresh data connections pointing to your PostgreSQL instance or processed local files.
 
 
 <br>
