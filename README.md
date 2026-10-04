@@ -12,9 +12,12 @@ Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pyth
 
 
 
-<!-- MIEJSCE NA GIF / PREZENTACJĘ WIDEO (BARDZO POLECANE DLA JUNIORA) -->
-<!-- Nagraj krótki 10-15s GIF (np. narzędziem ScreenToGif) pokazujący najechanie na bąbelek (tooltip z lejkiem), kliknięcie segmentu i przejście do strony 2 -->
-<!-- ![Interaktywny Dashboard Demo](docs/dashboard_demo.gif) -->
+
+
+https://github.com/user-attachments/assets/cce3c45d-71f0-4360-a6eb-b0fc42371c0e
+
+
+
 
 
 <br>
@@ -68,10 +71,10 @@ Surowe eksporty GA4 (.csv: kampanie + kategorie)
 
 ### 1) Python - Inżynieria Danych, Profilowanie i Czyszczenie (`etl_pipeline.py`)
 
-* **Odporność na błędy parsowania:** Zastosowanie kodowania `utf-8-sig` (eliminacja problemów z BOM) oraz parametru `on_bad_lines="skip"`.
-* **Automatyczny audyt jakości:** Sprawdzenie braków danych (`isna().sum()`), duplikatów (`duplicated().sum()`) oraz badanie rozkładów cech (`describe()`, `info()`).
-* **Standaryzacja schematu:** Mapowanie polskich nazw wymiarów i metryk raportowych GA4 na znormalizowany standard techniczny (`product_name`, `campaign_name`, `category_name`, `items_viewed`, `items_added_to_cart`, `items_purchased`, `item_revenue`).
-* **Sanityzacja kluczy relacyjnych:** Usunięcie rekordów bez nazwy produktu (`dropna(subset=['Nazwa'])`) oraz pełnych duplikatów przed zasileniem bazy danych.
+* **Odporność na błędy parsowania:** Zastosowanie kodowania `utf-8-sig` (neutralizacja BOM) oraz parametru `on_bad_lines="skip"`.
+* **Profilowanie i audyt jakości:** Kontrola pierwszych rekordów (`head(3)`), wymiarów zbioru (`shape`), weryfikacja typów danych (`dtypes`), braków wartości (`isna().sum()`) oraz zliczanie duplikatów (`duplicated().sum()`).
+* **Normalizacja schematu danych:** Automatyczne mapowanie polskich nagłówków raportowych GA4 na jednolity standard techniczny (`product_name`, `campaign_name`, `category_name`, `items_viewed`, `items_added_to_cart`, `items_purchased`, `item_revenue`).
+* **Przygotowanie pod SQL:** Zapis wystandaryzowanych zbiorów do czystych plików CSV (`encoding="utf-8-sig"`, `index=False`) gotowych do zasilenia tabel w bazie danych.
 
 -----
 <details>
@@ -250,6 +253,8 @@ ORDER BY global_revenue_rank ASC;
 
 ## 4. Raport Power BI & Warstwa Wizualna
 
+
+> **Modelowanie danych**: Utworzono dedykowaną tabelę kalendarza (calendar) w DAX z dynamicznym zakresem dat (relacja 1:N z faktami) w celu obsługi kalkulacji Time Intelligence i ciągłości osi czasu, a także osobną tabelę wymiaru produktów (Dim_Product), aby uniknąć relacji wiele-do-wielu (M:N) i zapewnić czysty schemat gwiazdy.
 <br>
 
 
