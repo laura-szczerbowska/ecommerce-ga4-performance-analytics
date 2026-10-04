@@ -86,7 +86,7 @@ Raw GA4 CSV Exports (Campaigns + Categories)
 
 -----
 <details>
-<summary><b>Expand Source Code: Python ETL (ga4_data_pipeline.py)</b></summary>
+<summary><b>Expand Source Code: Python (ga4_data_pipeline.py)</b></summary>
 
 ```python
 import pandas as pd
@@ -175,7 +175,7 @@ $$\text{Volume Efficiency Score} = \text{Total Purchased} \times \left( \frac{\t
 
 -----
 <details>
-<summary><b>Expand Source Code: Python ETL (ga4_data_pipeline.py)</b></summary>    
+<summary><b>Expand Source Code: SQL (products_analysis.sql)</b></summary>    
   
 ```sql
 -----CREATE OR REPLACE VIEW products_analysis AS
