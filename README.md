@@ -267,7 +267,7 @@ ORDER BY global_revenue_rank ASC;
 
 ## 4. Power BI Dashboard & Visual Layer
 
-> **Data Modeling:** Built a dedicated DAX calendar table (`calendar`) with dynamic date ranges (1:N relationship with fact tables) to support Time Intelligence calculations and timeline continuity. Implemented a dedicated product dimension table (`Dim_Product`) to eliminate Many-to-Many (M:N) relationships and maintain a clean star schema.
+> **Data Modeling:** Built a dedicated DAX calendar table (`calendar`) with dynamic date ranges (1:N relationship with fact tables) to support Time Intelligence calculations and timeline continuity. Implemented a dedicated product dimension table (`products`) to eliminate Many-to-Many (M:N) relationships and maintain a clean star schema.
 
 
 <br>
