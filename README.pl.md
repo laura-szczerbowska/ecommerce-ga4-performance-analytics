@@ -46,7 +46,7 @@ Sklepy e-commerce inwestujące w zróżnicowane źródła ruchu (Google Ads Sear
 Surowe eksporty GA4 (.csv: kampanie + kategorie)
        │
        ▼
-1. Skrypt Python (Pandas) - etl_pipeline.py
+1. Skrypt Python (Pandas) - ga4_data_pipeline.py
    ├── Obsługa kodowania UTF-8-sig i pomijanie błędnych linii
    ├── Audyt jakości: kontrola typów, braków (isna), duplikatów i statystyk
    └── Normalizacja schematu do spójnych kolumn analitycznych
@@ -393,7 +393,7 @@ ecommerce-ga4-performance-analytics/
 
 ```bash
 git clone https://github.com/laura-szczerbowska/ecommerce-ga4-performance-analytics.git
-cd ecommerce-ga4-analytics
+ecommerce-ga4-performance-analytics
 ```
 
 2) Uruchom potok czyszczenia danych:
@@ -402,17 +402,17 @@ cd ecommerce-ga4-analytics
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install pandas
-python scripts/etl_pipeline.py
+python ga4_data_pipeline
 ```
 
 3) Utwórz widok w bazie danych:
 
 * Zaimportuj wygenerowane pliki campaign.csv i category.csv jako tabele ga4_products i ga4_category.
-* Uruchom skrypt sql/create_products_analysis_view.sql.
+* Uruchom skrypt products_analysis.sql
 
 4) Uruchom dashboard:
 
-* Otwórz ecommerce_performance.pbix w Power BI Desktop.
+* Otwórz eccomerce_performane_dashboard.pbix w Power BI Desktop.
 * Odśwież dane wskazując swoją bazę SQL lub pliki wynikowe z folderu data/processed/
 
 
