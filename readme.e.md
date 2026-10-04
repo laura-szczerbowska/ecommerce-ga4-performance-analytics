@@ -173,7 +173,10 @@ $$\text{Volume Efficiency Score} = \text{Total Purchased} \times \left( \frac{\t
   * **`cart_intent` Flag:** Binary indicator identifying whether a product initiated purchase intent (`total_cart_adds > 0`).
   * **Sales Ranking:** Computes relative revenue rank using `DENSE_RANK() OVER (...)` partitioned by campaign, category, and catalog-wide.
 
-    
+-----
+<details>
+<summary><b>Expand Source Code: Python ETL (ga4_data_pipeline.py)</b></summary>    
+  
 ```sql
 -----CREATE OR REPLACE VIEW products_analysis AS
 
