@@ -1,7 +1,6 @@
 <div align="right">
-  <strong>English</strong> | <a href="./README.pl.md">Polski</a>
+  <a href="./README.md">English</a> | <strong>Polski</strong>
 </div>
-
 
 # Analiza Efektywności Produktowej i Konwersji GA4: Macierz Asortymentowa & Silnik Rekomendacji (Python | SQL | Power BI)
 
