@@ -1,3 +1,8 @@
+<div align="right">
+  <strong>English</strong> | <a href="./README.pl.md">Polski</a>
+</div>
+
+
 # Analiza Efektywności Produktowej i Konwersji GA4: Macierz Asortymentowa & Silnik Rekomendacji (Python | SQL | Power BI)
 
 
@@ -14,7 +19,8 @@ Kompletny moduł analityczny e-commerce łączący przetwarzanie danych w **Pyth
 
 
 
-https://github.com/user-attachments/assets/cce3c45d-71f0-4360-a6eb-b0fc42371c0e
+https://github.com/user-attachments/assets/d1b28b96-40c9-4ca3-b0b6-0f0361006c05
+
 
 
 
