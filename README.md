@@ -376,21 +376,17 @@ The tooltip immediately presents SKU-level revenue, CR, and AOV, pinpointing whe
 ## 7. Repository Structure
 
 ```text
-ecommerce-ga4-analytics/
+ecommerce-ga4-performance-analytics/
 ├── data/
-│   ├── raw/
-│   │   ├── products_campaign.csv        # Raw GA4 export (campaign dimension)
-│   │   └── products_category.csv        # Raw GA4 export (category dimension)
+│   ├── products_campaign.csv        # Raw GA4 export (campaign dimension)
+│   ├── products_category.csv        # Raw GA4 export (category dimension)
 │   └── processed/
-│       ├── campaign.csv                 # Cleaned campaign dataset
-│       └── category.csv                 # Cleaned category dataset
-├── sql/
-│   └── 01_products_analysis.sql         # View creation and business logic script
-├── powerbi/
-│   └── ecommerce_performance_dashboard.pbix   # Power BI production report
-├── scripts/
-│   └── ga4_data_pipeline.py             # Python data cleansing & ETL script
-└── README.md
+│       ├── campaign.csv             # Cleaned campaign dataset
+│       └── category.csv             # Cleaned category dataset
+├── ecommerce_performance_dashboard.pbix   # Power BI production report
+├── ga4_data_pipeline.py             # Python data cleansing & ETL script
+├── products_analysis.sql            # View creation and business logic script
+├── README.md
 └── README.pl.md
 ```
 
