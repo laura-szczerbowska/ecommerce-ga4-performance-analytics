@@ -407,12 +407,12 @@ python ga4_data_pipeline
 
 3) Utwórz widok w bazie danych:
 
-* Zaimportuj wygenerowane pliki campaign.csv i category.csv jako tabele ga4_products i ga4_category.
+* Zaimportuj wygenerowane pliki `campaign.csv` i `category.csv` jako tabele `ga4_products` i `ga4_category`.
 * Uruchom skrypt products_analysis.sql
 
 4) Uruchom dashboard:
 
-* Otwórz eccomerce_performane_dashboard.pbix w Power BI Desktop.
+* Otwórz `eccomerce_performane_dashboard.pbix` w Power BI Desktop.
 * Odśwież dane wskazując swoją bazę SQL lub pliki wynikowe z folderu data/processed/
 
 
@@ -420,7 +420,7 @@ python ga4_data_pipeline
 
 
 
-## 9. Future Roadmap
+## 9. Perspektywy na przyszłość
 
 Potencjalne kierunki dalszego rozwoju modułu i infrastruktury analitycznej:
 * **Automatyzacja potoku danych:** Wdrożenie harmonogramowania potoku ETL z bezpośrednim zasilaniem przez BigQuery GA4 Export zamiast ręcznych zrzutów CSV.
@@ -433,7 +433,7 @@ Potencjalne kierunki dalszego rozwoju modułu i infrastruktury analitycznej:
 
 
 
-## 10. Key Takeaways
+## 10. Kluczowe wnioski
 
 Projekt łączy analitykę internetową GA4 z inżynierią danych i warstwą Business Intelligence, przekształcając surowe dane o ruchu w gotowe decyzje optymalizacyjne dla asortymentu sklepu:
 * **Eliminacja przepalania budżetu:** Zidentyfikowanie produktów w kwadrancie *Requires Optimization* (wysoki ruch, niski CR) pozwala na natychmiastowe obcięcie nieefektywnych fraz kluczowych i zaoszczędzenie budżetu reklamowego.
