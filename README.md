@@ -414,11 +414,11 @@ python ga4_data_pipeline.py
 
 
 3)Initialize database views:
-* Import campaign.csv and category.csv into your database as tables ga4_products and ga4_category.
-* Execute the script products_analysis.sql.
+* Import `campaign.csv` and `category.csv` into your database as tables `ga4_products` and `ga4_category`.
+* Execute the script `products_analysis.sql`.
 
 4)Open the dashboard:
-* Open ecommerce_performance_dashboard.pbix in Power BI Desktop.
+* Open `ecommerce_performance_dashboard.pbix` in Power BI Desktop.
 * Refresh data connections pointing to your PostgreSQL instance or processed local files.
 
 
